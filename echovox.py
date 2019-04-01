@@ -28,7 +28,7 @@ def csv_parser(csv_file):
     with open(csv_file, "rU") as data:
         reader = csv.reader(data)
         for line in reader:
-            print line
+            print(line)
 
 # Approach for huge files
 import pandas as pd
