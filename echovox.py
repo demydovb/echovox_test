@@ -13,6 +13,30 @@ def add_property_to_obj(obj):
     return obj, new_obj
 
 
+""" repeated patterns
+1. You have a function which manages input and formats the output of tasks . How would you
+create a task if it is defined by a function.
+2. Finish defining the functions above
+"""
+def do_input():
+    in_data = input('Please, input some value:')
+    return in_data
+
+def do_task(in_data):
+    return in_data*2
+
+def output_middleware(in_data):
+    out_data = do_task(in_data)
+    # app.logger.debug("output is {}".format(out_data))
+    return out_data
+
+def as_task():
+    in_data = do_input()
+    out_data = output_middleware(in_data)
+    return in_data, out_data
+
+res=as_task()
+print(res)
 """ Data analytics
 1. Write a function that given a csv file output a list containing each row. What if the file is
 huge.
@@ -39,10 +63,19 @@ def pandas_csv_parser(csv_file):
             print(row)
             print(" ")
 
+# Without Pandas
+def csv_parser_iterator(csv_file):
+    with open(csv_file, "r") as data:
+        reader = csv.reader(data)
+        try:
+            while True:
+                print(next(reader))
+        except StopIteration:
+            print("Finished.")
 #2
 
 def map_csv_parser(sources):
-    map(pandas_csv_parser, sources)
+    map(csv_parser_iterator, sources)
 
 """ Primes
 
